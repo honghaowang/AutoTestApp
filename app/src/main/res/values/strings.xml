@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AutoTest</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="app">
+        <item>Domino\'s Pizza</item>
+        <item>Pinterest</item>
+        <item>Expedia Travel</item>
+    </string-array>
+
+    <string-array name="Domino_task">
+        <item>Random browsing</item>
+        <item>Select a nearby store for carry-out</item>
+        <item>Order a large 3-topping pizza using coupon</item>
+        <item>Select a pizza, chick wings and BBQ source</item>
+        <item>Remove all the sides</item>
+    </string-array>
+
+    <string-array name="Pinterest_task">
+        <item>Random Review</item>
+        <item>Search weibo related with TFboys</item>
+        <item>Post a weibo</item>
+    </string-array>
+
+    <string-array name="pkgNmae">
+        <item>com.dominospizza</item>
+        <item>com.sina.weibo</item>
+    </string-array>
+
+    <string name="startBtn">Start Task</string>
+    <string name="endBtn">End Task</string>
+    <string name="successful">Successful</string>
+    <string name="giveUp">Give Up</string>
+    <string name="taskDescription">I will add different descriptions at here</string>
+
+    <string name="createDB">Initial DataBase</string>
+    <string name="deleteDB">Delete DataBase</string>
+
+</resources>

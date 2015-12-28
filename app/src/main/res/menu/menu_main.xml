@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <item android:id="@+id/deleteDB"
+        android:title="Delete DataBase"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/createDB"
+        android:title="Create DataBase"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/BasicInfo"
+        android:title="TABLE_BASIC_INFO"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/InteractionInfo"
+        android:title="TABLE_INTERACTION_INFO"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+</menu>
