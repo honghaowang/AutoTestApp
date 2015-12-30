@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "edu.uml.swin.logger"
+        applicationId "edu.uml.swin.autotest"
         minSdkVersion 16
         targetSdkVersion 18
         versionCode 1
