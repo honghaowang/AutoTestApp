@@ -154,14 +154,22 @@ public class LogService extends AccessibilityService {
 
     protected void recycle(StringBuilder sb, AccessibilityNodeInfo info, int level) {
         if (info == null) return;
-
         String levelInfo = generateLevel(level);
         sb.append(levelInfo);
         sb.append("[ClassName] "+ info.getClassName()+ " [ViewId] "+this.getViewResourceId(info)+
-                " [Text] "+ info.getText() + " [WINDOW_ID] "+ info.getWindowId());
+                " [Text] "+ info.getText() + " [WINDOW_ID] "+ info.getWindowId() + " [WINDOW_TYPE] " + info.getWindow().getType());
         sb.append("\n");
         Log.i(TAG, levelInfo + "[ClassName] " + info.getClassName() + " [ViewId] " + this.getViewResourceId(info) +
-                " [Text] " + info.getText() + " [WINDOW_ID] " + info.getWindowId());
+                " [Text] " + info.getText() + " [WINDOW_ID] " + info.getWindowId() + "[WINDOW_TYPE] " + info.getWindow().getType());
+
+        ContentValues values = new ContentValues();
+        values.put(DBcontract.LogEntry.COLUMN_LEVEL, level);
+        values.put(DBcontract.LogEntry.COLIMN_CLASS_NAME, String.valueOf(info.getClassName()));
+        values.put(DBcontract.LogEntry.COLUMN_VIEW_ID, this.getViewResourceId(info));
+        values.put(DBcontract.LogEntry.COLUMN_WIDGET_TEXT, String.valueOf(info.getText()));
+        values.put(DBcontract.LogEntry.COLUMN_WINDOW_ID, info.getWindowId());
+        values.put(DBcontract.LogEntry.COLUMN_WINDOW_TYPE, info.getWindow().getType());
+        db.insert(DBcontract.LogEntry.TABLE_SOURCE_INFO, null, values);
 
         if(info.getChildCount()!=0){
             for (int i = 0; i < info.getChildCount(); i++) {

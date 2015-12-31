@@ -29,7 +29,6 @@ public class FileUploader extends AsyncTask<Void, Void, String> {
 	private String fileName;
 
 
-
 	public FileUploader(Context context) {
 		mContext = context;
     	mConnectionDetector = new ConnectionDetector(mContext);

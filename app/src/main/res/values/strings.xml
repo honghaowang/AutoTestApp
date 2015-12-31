@@ -9,17 +9,44 @@
     </string-array>
 
     <string-array name="Domino_task">
-        <item>Random browsing</item>
-        <item>Select a nearby store for carry-out</item>
-        <item>Order a large 3-topping pizza using coupon</item>
-        <item>Select a pizza, chick wings and BBQ source</item>
-        <item>Remove all the sides</item>
+        <item>Domain--1</item>
+        <item>Domain--2</item>
+        <item>Domain--3</item>
+        <item>Domain--4</item>
+        <item>Domain--5</item>
     </string-array>
 
     <string-array name="Pinterest_task">
-        <item>Random Review</item>
-        <item>Search weibo related with TFboys</item>
-        <item>Post a weibo</item>
+        <item>Pinterest--1</item>
+        <item>Pinterest--2</item>
+        <item>Pinterest--3</item>
+        <item>Pinterest--4</item>
+        <item>Pinterest--5</item>
+    </string-array>
+
+    <string-array name="Expedia_task">
+        <item>Expedia--1</item>
+        <item>Expedia--2</item>
+        <item>Expedia--3</item>
+        <item>Expedia--4</item>
+        <item>Expedia--5</item>
+    </string-array>
+    <string-array name="Task_detail">
+        <item>Random browsing, try to learn to use the app</item>
+        <item>Select \"arryout\" order type and select a nearby local store</item>
+        <item>Order a large 3-Topping pizza using the coupon; customize the toppings as you want</item>
+        <item>Select a pizza from the menu and add it into your shopping cart; Add chicken wings and BBQ source into your shopping cart; Change the order to be delivered to your address</item>
+        <item>Remove all the sides from your shopping cart and go to checkout again</item>
+        <item>Random browsing, try to learn to use the app</item>
+        <item>Find a photo of two dogs, like it and pin it. Save the photo to your device. Follow the person who posted this photo. Pin another photo published by this person</item>
+        <item>Upload a picture of form the Gallery of the phone, and create a new “Board” for it</item>
+        <item>Find a photo to your interest in category “Film”. Make a comment of the photo and share the photo to new friend (me) by email (send to: kinserwang@gmail.com)</item>
+        <item>Find a photo of dogs from all your pins. Add some description to the board of this photo. Delete this photo from your pins</item>
+        <item>Random browsing, try to learn to use the app</item>
+        <item>find a hotel for 2 adults for this weekend (Fri and Sat): Find the cheapest hotel(above 3 stars) nearby; Look up if this hotel provides free WiFi and when does check-in starts; Book a room at this hotel, you can stop at checkout page</item>
+        <item>Book 2 oneway tickets from Boston to San Francisco (leaving earliest this Sunday morning).</item>
+        <item>Book two round-trip tickets (Leaving this Saturday and returning next Wed) from Boston to Las Vegas with least duration</item>
+        <item>Book a car rental service: set the pickup location at Boston Logan Airport; set the pick up date and return date as you want; set the pick-up time at 10 am and the drop-off time at 6pm; Modify your return date to be one week later than the current selected return date; reserve a car with above criteria. you can stop at checkout page or payment page</item>
     </string-array>
 
     <string-array name="pkgNmae">

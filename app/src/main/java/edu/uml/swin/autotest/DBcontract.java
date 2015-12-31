@@ -20,6 +20,7 @@ public class DBcontract {
         public static final String TABLE_INTERACTION_INFO = "Interaction_Information";
         public static final String TABLE_SENSOR_INFO = "Sensor_Information";
         public static final String TABLE_CONTEXT_INFO = "Context_Information";
+        public static final String TABLE_SOURCE_INFO = "Source_Info";
 
         //Attribute in table TASK LIST
         public static final String COLUMN_TASK_ID = "task_id";
@@ -51,6 +52,10 @@ public class DBcontract {
         public static final String COLUMN_LOCATION_X = "location_x";
         public static final String COLUMN_LOCATION_Y = "location_y";
         public static final String COLUMN_LEVEL = "level";
+
+        public static final String COLIMN_CLASS_NAME = "class_name";
+        public static final String COLUMN_WINDOW_TYPE = "window_type";
+        public static final String COLUMN_VIEW_ID = "view_id";
 
         //Attribute in table INTERACTION RECORDER
         public static final String COLUMN_INTERACTION_ID = "interaction_id";

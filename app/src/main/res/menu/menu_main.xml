@@ -21,4 +21,9 @@
         android:title="TABLE_INTERACTION_INFO"
         android:orderInCategory="100"
         app:showAsAction="never" />
+
+    <item android:id="@+id/SourceInfo"
+        android:title="TABLE_SOURCE_INFO"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 </menu>

@@ -14,23 +14,29 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
 
     private static String TAG = "MainActivity";
     private String appName, taskName;
-    private String[] appArray, pkgArray, taskArray;
+    private String[] appArray, pkgArray, taskDetial, taskArray;
     private Button startBtn, endBtn;
     private Spinner appList, taskList;
     private Menu mMenu;
     private long startTime;
     private String deviceID;
     private Context myself;
+    private EditText user;
+    private TextView description;
+    private int taskID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myself = this;
@@ -40,9 +46,14 @@ public class MainActivity extends ActionBarActivity {
         appList = (Spinner) findViewById(R.id.app_list);
         taskList = (Spinner) findViewById(R.id.task_list);
 
+        user = (EditText) findViewById(R.id.userName);
+
         appArray = getResources().getStringArray(R.array.app);
         pkgArray = getResources().getStringArray(R.array.pkgNmae);
+        taskDetial = getResources().getStringArray(R.array.Task_detail);
         deviceID = Settings.Secure.getString(getBaseContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        description = (TextView) findViewById(R.id.description);
 
 
         //设置两个spinner联动
@@ -55,10 +66,17 @@ public class MainActivity extends ActionBarActivity {
                     case 0:
                         adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.Domino_task, R.layout.support_simple_spinner_dropdown_item);
                         taskArray = getResources().getStringArray(R.array.Domino_task);
+                        taskID = 0;
                         break;
                     case 1:
                         adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.Pinterest_task, R.layout.support_simple_spinner_dropdown_item);
                         taskArray = getResources().getStringArray(R.array.Pinterest_task);
+                        taskID = 5;
+                        break;
+                    case 2:
+                        adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.Expedia_task, R.layout.support_simple_spinner_dropdown_item);
+                        taskArray = getResources().getStringArray(R.array.Expedia_task);
+                        taskID = 10;
                         break;
                     default:
                         adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.Domino_task, R.layout.support_simple_spinner_dropdown_item);
@@ -81,6 +99,8 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 taskName = taskArray[position];
+                taskID = taskID + position;
+                description.setText(taskDetial[taskID]);
             }
 
             @Override
@@ -92,6 +112,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void startBtnClick(View target){
+        String userName = user.getText().toString();
         DBhelper helper = new DBhelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
         //helper.deleteDatabase(db);
@@ -117,14 +138,14 @@ public class MainActivity extends ActionBarActivity {
             endBtn.setText(R.string.giveUp);
 
             int random = (int) (Math.random()*100 +1);
-            values.put(DBcontract.LogEntry.COLUMN_ID, deviceID + '_' + String.valueOf(random));
+            values.put(DBcontract.LogEntry.COLUMN_ID, userName);
             values.put(DBcontract.LogEntry.COLUMN_DEVICE_ID, deviceID);
             values.put(DBcontract.LogEntry.COLUMN_APP_NAME, appName);
             values.put(DBcontract.LogEntry.COLUMN_TASK_NAME, taskName);
             values.put(DBcontract.LogEntry.COLUMN_START_TIME, startTime);
             values.put(DBcontract.LogEntry.COLUMN_END_TIME, " ");
             values.put(DBcontract.LogEntry.COLUMN_TASK_DURATION, " ");
-            values.put(DBcontract.LogEntry.COLUMN_TASK_STATE, "Start");
+            values.put(DBcontract.LogEntry.COLUMN_TASK_STATE, " ");
             Log.d(TAG, "Values====" + values.toString());
             db.insert(DBcontract.LogEntry.TABLE_BASIC_INFO, DBcontract.LogEntry.COLUMN_ID, values);
             LogService.setLogEnable();
@@ -132,6 +153,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void endBtnClick(View target){
+        String userName = user.getText().toString();
         DBhelper helper = new DBhelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
         ContentValues values = new ContentValues();
@@ -181,6 +203,9 @@ public class MainActivity extends ActionBarActivity {
                 helper = new DBhelper(this);
                 db = helper.getWritableDatabase();
                 helper.createDatabase(db);
+                return true;
+            case R.id.SourceInfo:
+                showTable(DBcontract.LogEntry.TABLE_SOURCE_INFO);
                 return true;
             default:
                 return false;
