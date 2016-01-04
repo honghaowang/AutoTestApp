@@ -2,6 +2,8 @@ package edu.uml.swin.autotest;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -28,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
     private Spinner appList, taskList;
     private Menu mMenu;
     private long startTime;
-    private String deviceID;
+    private String deviceID, pkg;
     private Context myself;
     private EditText user;
     private TextView description;
@@ -85,6 +88,7 @@ public class MainActivity extends ActionBarActivity {
                 }
                 taskList.setAdapter(adapter);
                 appName = appArray[position];
+                pkg = pkgArray[position];
             }
 
             @Override
@@ -133,22 +137,34 @@ public class MainActivity extends ActionBarActivity {
             LogService.setLogDisable();
         }
         else{
-            startTime = System.currentTimeMillis();
-            startBtn.setText(R.string.successful);
-            endBtn.setText(R.string.giveUp);
+            PackageManager packageManager = getPackageManager();
+            Intent intent = new Intent();
+            intent = packageManager.getLaunchIntentForPackage(pkg);
+            if(intent == null){
+                String alter = "Please install" + appName;
+                Toast.makeText(getApplicationContext(), alter, Toast.LENGTH_LONG).show();
+            }
+            else {
+                startTime = System.currentTimeMillis();
+                startBtn.setText(R.string.successful);
+                endBtn.setText(R.string.giveUp);
 
-            int random = (int) (Math.random()*100 +1);
-            values.put(DBcontract.LogEntry.COLUMN_ID, userName);
-            values.put(DBcontract.LogEntry.COLUMN_DEVICE_ID, deviceID);
-            values.put(DBcontract.LogEntry.COLUMN_APP_NAME, appName);
-            values.put(DBcontract.LogEntry.COLUMN_TASK_NAME, taskName);
-            values.put(DBcontract.LogEntry.COLUMN_START_TIME, startTime);
-            values.put(DBcontract.LogEntry.COLUMN_END_TIME, " ");
-            values.put(DBcontract.LogEntry.COLUMN_TASK_DURATION, " ");
-            values.put(DBcontract.LogEntry.COLUMN_TASK_STATE, " ");
-            Log.d(TAG, "Values====" + values.toString());
-            db.insert(DBcontract.LogEntry.TABLE_BASIC_INFO, DBcontract.LogEntry.COLUMN_ID, values);
-            LogService.setLogEnable();
+                int random = (int) (Math.random() * 100 + 1);
+                values.put(DBcontract.LogEntry.COLUMN_ID, userName);
+                values.put(DBcontract.LogEntry.COLUMN_DEVICE_ID, deviceID);
+                values.put(DBcontract.LogEntry.COLUMN_APP_NAME, appName);
+                values.put(DBcontract.LogEntry.COLUMN_TASK_NAME, taskName);
+                values.put(DBcontract.LogEntry.COLUMN_START_TIME, startTime);
+                values.put(DBcontract.LogEntry.COLUMN_END_TIME, " ");
+                values.put(DBcontract.LogEntry.COLUMN_TASK_DURATION, " ");
+                values.put(DBcontract.LogEntry.COLUMN_TASK_STATE, " ");
+                Log.d(TAG, "Values====" + values.toString());
+                db.insert(DBcontract.LogEntry.TABLE_BASIC_INFO, DBcontract.LogEntry.COLUMN_ID, values);
+                LogService.setUserName(userName);
+                LogService.setLogEnable();
+
+                startActivity(intent);
+            }
         }
     }
 

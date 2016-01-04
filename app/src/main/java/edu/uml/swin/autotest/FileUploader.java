@@ -72,6 +72,7 @@ public class FileUploader extends AsyncTask<Void, Void, String> {
 			MultipartEntityBuilder reqEntity = MultipartEntityBuilder.create();
 			reqEntity.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 			reqEntity.addPart("file", fileBody);
+			Log.d(TAG, DB_PATH);
 			fileName += "_" + String.valueOf(System.currentTimeMillis());
 			reqEntity.addTextBody("fileName", fileName + ".db");
 			httpPost.setEntity(reqEntity.build());
@@ -81,6 +82,7 @@ public class FileUploader extends AsyncTask<Void, Void, String> {
 			HttpEntity resEntity = response.getEntity();
 
             Log.e(TAG, "========== Status code = " + response.getStatusLine().getStatusCode());
+
 
 			if (resEntity != null) {
 				String responseStr = EntityUtils.toString(resEntity).trim();

@@ -12,7 +12,7 @@ public class DBhelper extends SQLiteOpenHelper{
     private String TAG = "DBhelper";
 
     public static final String CREATE_BASIC_INFO_TABLE =  "CREATE TABLE IF NOT EXISTS " + DBcontract.LogEntry.TABLE_BASIC_INFO + " ("
-            + DBcontract.LogEntry.COLUMN_ID + " TEXT PRIMARY KEY,"
+            + DBcontract.LogEntry.COLUMN_ID + " TEXT,"
             + DBcontract.LogEntry.COLUMN_DEVICE_ID + " INTEGER,"
             + DBcontract.LogEntry.COLUMN_APP_NAME + " TEXT,"
             + DBcontract.LogEntry.COLUMN_TASK_NAME + " TEXT,"
@@ -43,7 +43,7 @@ public class DBhelper extends SQLiteOpenHelper{
             + DBcontract.LogEntry.COLUMN_LOCATION_Y + "INTEGER,"
             + DBcontract.LogEntry.COLUMN_LEVEL + " INTEGER)";
     **/
-    public static final String CREATE_SOURCE_INFO_TABLE = "CRATE TABLE IF NOT EXISTS " +DBcontract.LogEntry.TABLE_SOURCE_INFO + " ("
+    public static final String CREATE_SOURCE_INFO_TABLE = "CREATE TABLE IF NOT EXISTS " +DBcontract.LogEntry.TABLE_SOURCE_INFO + " ("
             + DBcontract.LogEntry.COLUMN_LEVEL + " INTEGER,"
             + DBcontract.LogEntry.COLIMN_CLASS_NAME + " TEXT,"
             + DBcontract.LogEntry.COLUMN_VIEW_ID + " INTEGER,"
@@ -57,8 +57,6 @@ public class DBhelper extends SQLiteOpenHelper{
             + DBcontract.LogEntry.COLUMN_EVENT_TYPE + " TEXT, "
             + DBcontract.LogEntry.COLUMN_APP_NAME + " TEXT, "
             + DBcontract.LogEntry.COLUMN_ACTIVITY_NAME + " TEXT, "
-            //+ LogEntry.COLUMN_SCROLL_X + " INTEGER, "
-            //+ LogEntry.COLUMN_SCROLL_Y + " INTEGER, "
             + DBcontract.LogEntry.COLUMN_EVENT_TIME + " INTEGER, "
             + DBcontract.LogEntry.COLUMN_EVENT_TIME_DURATION + " INTEGER, "
             + DBcontract.LogEntry.COLUMN_SYS_TIME + " INTEGER, "
@@ -73,7 +71,7 @@ public class DBhelper extends SQLiteOpenHelper{
             + DBcontract.LogEntry.COLUMN_REMOVED_COUNT + " INTEGER, "
             + DBcontract.LogEntry.COLUMN_ADDED_COUNT + " INTEGER, "
             + DBcontract.LogEntry.COLUMN_WIDGET_TEXT + " TEXT, "
-            + DBcontract.LogEntry.COLUMN_WIDGET_TEXT + " TEXT)";
+            + DBcontract.LogEntry.COLUMN_ID + " TEXT)";
     /**
     public static final String CREATE_SENSOR_INFO_TABLE = "CREATE TABLE IF NOT EXISTS " + DBcontract.LogEntry.TABLE_SENSOR_INFO + " ("
             + DBcontract.LogEntry.COLUMN_SENSOR_RECORD_ID + " INTEGER PRIMARY KEY,"

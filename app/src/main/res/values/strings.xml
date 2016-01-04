@@ -51,7 +51,8 @@
 
     <string-array name="pkgNmae">
         <item>com.dominospizza</item>
-        <item>com.sina.weibo</item>
+        <item>com.pinterest</item>
+        <item>com.expedia.bookins</item>
     </string-array>
 
     <string name="startBtn">Start Task</string>

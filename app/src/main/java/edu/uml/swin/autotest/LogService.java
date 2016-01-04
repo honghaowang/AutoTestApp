@@ -8,6 +8,7 @@ import android.os.Build;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.EditText;
 
 /**
  * Created by honghao on 12/27/2015.
@@ -17,7 +18,7 @@ public class LogService extends AccessibilityService {
     public static Boolean logEnable = false;
     private long lastEventTime = 0, lastSysTime = 0;
     SQLiteDatabase db;
-
+    private static String userName;
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         //Log.e(TAG, "*****" + String.valueOf(logEnable) + "**********");
@@ -91,6 +92,7 @@ public class LogService extends AccessibilityService {
         values.put(DBcontract.LogEntry.COLUMN_IS_PASSWORD, isPass);
         values.put(DBcontract.LogEntry.COLUMN_REMOVED_COUNT, removeCount);
         values.put(DBcontract.LogEntry.COLUMN_ADDED_COUNT, addCount);
+        values.put(DBcontract.LogEntry.COLUMN_ID, userName);
         db.insert(DBcontract.LogEntry.TABLE_INTERACTION_INFO, null, values);
         lastEventTime = eventTime;
         lastSysTime = sysTime;
@@ -107,6 +109,8 @@ public class LogService extends AccessibilityService {
         DBhelper helper = new DBhelper(this);
         db = helper.getWritableDatabase();
     }
+
+    public static void setUserName(String name){ userName = name; }
 
     public static void setLogEnable(){ logEnable = true; }
 
@@ -157,10 +161,10 @@ public class LogService extends AccessibilityService {
         String levelInfo = generateLevel(level);
         sb.append(levelInfo);
         sb.append("[ClassName] "+ info.getClassName()+ " [ViewId] "+this.getViewResourceId(info)+
-                " [Text] "+ info.getText() + " [WINDOW_ID] "+ info.getWindowId() + " [WINDOW_TYPE] " + info.getWindow().getType());
+                " [Text] "+ info.getText() + " [WINDOW_ID] "+ info.getWindowId());
         sb.append("\n");
         Log.i(TAG, levelInfo + "[ClassName] " + info.getClassName() + " [ViewId] " + this.getViewResourceId(info) +
-                " [Text] " + info.getText() + " [WINDOW_ID] " + info.getWindowId() + "[WINDOW_TYPE] " + info.getWindow().getType());
+                " [Text] " + info.getText() + " [WINDOW_ID] " + info.getWindowId());
 
         ContentValues values = new ContentValues();
         values.put(DBcontract.LogEntry.COLUMN_LEVEL, level);
@@ -168,7 +172,6 @@ public class LogService extends AccessibilityService {
         values.put(DBcontract.LogEntry.COLUMN_VIEW_ID, this.getViewResourceId(info));
         values.put(DBcontract.LogEntry.COLUMN_WIDGET_TEXT, String.valueOf(info.getText()));
         values.put(DBcontract.LogEntry.COLUMN_WINDOW_ID, info.getWindowId());
-        values.put(DBcontract.LogEntry.COLUMN_WINDOW_TYPE, info.getWindow().getType());
         db.insert(DBcontract.LogEntry.TABLE_SOURCE_INFO, null, values);
 
         if(info.getChildCount()!=0){
